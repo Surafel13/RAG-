@@ -3,6 +3,8 @@ import { MessageSquare, X, Send, Bot, User as UserIcon, Loader2 } from 'lucide-r
 import axios from 'axios';
 import API_BASE_URL from '../config';
 import { motion, AnimatePresence } from 'framer-motion';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const ChatWidget = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -84,15 +86,23 @@ const ChatWidget = () => {
                             )}
                             {messages.map((msg, i) => (
                                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                    <div className={`flex gap-2 max-w-[80%] ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+                                    <div className={`flex gap-2 max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
                                         <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${msg.role === 'user' ? 'bg-indigo-500' : 'bg-slate-700'}`}>
                                             {msg.role === 'user' ? <UserIcon size={16} /> : <Bot size={16} />}
                                         </div>
-                                        <div className={`p-3 rounded-2xl text-sm ${msg.role === 'user'
+                                        <div className={`p-3 rounded-2xl text-sm overflow-hidden ${msg.role === 'user'
                                             ? 'bg-primary text-white rounded-tr-none'
                                             : 'bg-dark-surface text-text-primary border border-white/5 rounded-tl-none'
                                             }`}>
-                                            {msg.content}
+                                            {msg.role === 'user' ? (
+                                                msg.content
+                                            ) : (
+                                                <div className="markdown-content">
+                                                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                                        {msg.content}
+                                                    </ReactMarkdown>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
