@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config';
 import { Upload, FileText, Trash2, Loader2, Plus, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -16,7 +17,7 @@ const AdminDashboard = () => {
 
     const fetchDocuments = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/documents');
+            const res = await axios.get(`${API_BASE_URL}/documents`);
             setDocuments(res.data);
         } catch (err) {
             console.error(err);
@@ -35,7 +36,7 @@ const AdminDashboard = () => {
         formData.append('title', title);
 
         try {
-            await axios.post('http://localhost:5000/api/documents/upload', formData, {
+            await axios.post(`${API_BASE_URL}/documents/upload`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             setFile(null);
@@ -51,7 +52,7 @@ const AdminDashboard = () => {
     const handleDelete = async (id) => {
         if (!window.confirm('Are you sure you want to delete this document?')) return;
         try {
-            await axios.delete(`http://localhost:5000/api/documents/${id}`);
+            await axios.delete(`${API_BASE_URL}/documents/${id}`);
             fetchDocuments();
         } catch (err) {
             alert('Delete failed');

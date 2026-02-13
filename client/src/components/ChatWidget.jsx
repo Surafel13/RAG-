@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { MessageSquare, X, Send, Bot, User as UserIcon, Loader2 } from 'lucide-react';
 import axios from 'axios';
+import API_BASE_URL from '../config';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ChatWidget = () => {
@@ -24,7 +25,7 @@ const ChatWidget = () => {
 
     const fetchHistory = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/chat/history');
+            const res = await axios.get(`${API_BASE_URL}/chat/history`);
             setMessages(res.data);
         } catch (err) {
             console.error("Error fetching history", err);
@@ -41,7 +42,7 @@ const ChatWidget = () => {
         setLoading(true);
 
         try {
-            const res = await axios.post('http://localhost:5000/api/chat', { message: input });
+            const res = await axios.post(`${API_BASE_URL}/chat`, { message: input });
             setMessages(prev => [...prev, { role: 'assistant', content: res.data.response }]);
         } catch (err) {
             console.error(err);
