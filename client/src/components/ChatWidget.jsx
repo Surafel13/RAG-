@@ -63,7 +63,7 @@ const ChatWidget = () => {
                         initial={{ opacity: 0, y: 20, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        className="mb-4 w-[400px] h-[500px] glass-morphism rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-white/10"
+                        className="mb-4 w-[calc(100vw-3rem)] md:w-[400px] h-[500px] glass-morphism rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-white/10"
                     >
                         {/* Header */}
                         <div className="p-4 bg-primary flex justify-between items-center text-white">
@@ -142,9 +142,9 @@ const ChatWidget = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className="bg-primary hover:bg-primary-hover p-4 rounded-full text-white shadow-lg flex items-center justify-center relative group"
+                className="bg-primary hover:bg-primary-hover p-4 rounded-full text-white shadow-lg flex items-center justify-center relative group z-50"
             >
-                <MessageSquare size={28} />
+                {isOpen ? <X size={28} /> : <MessageSquare size={28} />}
                 {!isOpen && (
                     <span className="absolute right-full mr-3 bg-primary px-3 py-1 rounded text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
                         Chat with AI

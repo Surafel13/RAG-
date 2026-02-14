@@ -60,7 +60,11 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div className="min-h-screen pt-24 px-6 max-w-7xl mx-auto pb-12">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="min-h-screen pt-24 px-6 max-w-7xl mx-auto pb-12"
+        >
             <div className="mb-12">
                 <h1 className="text-4xl font-bold mb-4">Admin Dashboard</h1>
                 <p className="text-text-secondary">Manage the knowledge base for your AI assistant.</p>
@@ -69,7 +73,7 @@ const AdminDashboard = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Upload Form */}
                 <div className="lg:col-span-1">
-                    <div className="glass-morphism p-6 rounded-2xl sticky top-24 border border-white/10">
+                    <div className="glass-morphism p-6 rounded-2xl lg:sticky lg:top-24 border border-white/10">
                         <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
                             <Plus size={20} className="text-primary" />
                             Upload Knowledge
@@ -161,7 +165,7 @@ const AdminDashboard = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
