@@ -6,7 +6,7 @@ This is a full-stack web application featuring a modern landing page and an AI-p
 
 - **Frontend:** React (Vite), TailwindCSS, Framer Motion, Lucide-React
 - **Backend:** Node.js, Express, MongoDB, Mongoose
-- **AI:** OpenAI API (GPT-4o-mini & Text-Embedding-3-Small)
+- **AI:** Gemini flash 2.5
 - **PDF Processing:** pdf-parse
 
 ## Prerequisites
